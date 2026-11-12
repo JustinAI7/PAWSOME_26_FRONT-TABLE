@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>PAWSOME 2026 Front Table</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&amp;family=Nunito:wght@400;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="inner">
+    <div class="logos" id="logos"></div>
+    <div class="eyebrow">UNORSSG · STAFF ONLY</div>
+    <h1 style="font-size:clamp(32px,8vw,52px)">Front Table</h1>
+    <p>Check participants in with their code.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- PIN gate -->
+  <form id="pinForm" class="card">
+    <h2>Staff PIN</h2>
+    <label for="pin">Enter the PIN from the organizers</label>
+    <input type="password" id="pin" inputmode="numeric" autocomplete="off">
+    <label for="who">Your name <span class="hint">(saved with each check-in)</span></label>
+    <input type="text" id="who" autocomplete="off">
+    <div id="pinError" class="msg err hidden" role="alert"></div>
+    <div class="row" style="margin-top:18px"><button class="btn" type="submit" id="pinBtn">Open</button></div>
+  </form>
+
+  <div id="app" class="hidden">
+    <section class="card">
+      <div class="row" style="justify-content:space-between">
+        <h2>Today</h2>
+        <button class="btn ghost small" id="refresh" type="button">Refresh</button>
+      </div>
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <section class="card">
+      <h2>Check in</h2>
+      <form id="lookupForm">
+        <label for="activity">Activity you are checking in</label>
+        <select id="activity"></select>
+        <label style="margin-top:14px" for="query">Code, name or email</label>
+        <div class="row">
+          <input type="text" id="query" autocomplete="off" autocapitalize="characters" style="flex:1;min-width:200px" placeholder="PAW-XXXX">
+          <button class="btn" type="submit">Find</button>
+          <button class="btn gold" type="button" id="scanBtn">Scan QR</button>
+        </div>
+      </form>
+      <div id="reader" class="hidden"></div>
+      <div id="notice" class="msg hidden" role="status"></div>
+      <div id="result" class="result hidden" aria-live="assertive"></div>
+      <div id="results"></div>
+    </section>
+
+    <section class="card">
+      <h2>Raffle names</h2>
+      <p class="hint" style="margin-top:0">One name per person, ready to paste into a wheel of names. People who register on site are not in this list, so add them to the wheel yourself.</p>
+      <label for="namesWho">Who to include</label>
+      <select id="namesWho">
+        <option value="all">Everyone registered</option>
+        <option value="in">Only people already checked in</option>
+      </select>
+      <div class="row" style="margin-top:14px">
+        <button class="btn" id="namesBtn" type="button">Copy names</button>
+        <a class="btn ghost small" href="https://wheelofnames.com" target="_blank" rel="noopener noreferrer">Open Wheel of Names</a>
+      </div>
+      <div id="namesMsg" class="msg ok hidden" role="status"></div>
+      <textarea id="namesBox" class="hidden" rows="8" readonly style="width:100%;margin-top:12px;border:2px solid var(--line);border-radius:14px;padding:10px 14px;font:inherit"></textarea>
+    </section>
+    <section class="card">
+      <h2>Kapon reminders</h2>
+      <ul class="remind">
+        <li><b>Valid university ID</b> and the confirmation code (or QR).</li>
+        <li><b>Dogs and cats only</b>, at least <b>6 months old</b> and healthy.</li>
+        <li>Up to <b>2 pets per owner</b>. Limited to <b>80 pets</b> in total.</li>
+        <li>First come, first served: <b>batch 1 in the morning, batch 2 in the afternoon</b>.</li>
+        <li>The owner is given a <b>consent form</b> to sign for the kapon.</li>
+        <li>Kapon runs in the auditorium while the talks are ongoing.</li>
+        <li>The veterinary team has the final say on every pet.</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>Anti-rabies reminders</h2>
+      <ul class="remind">
+        <li>Dogs and cats, at least <b>3 months old</b> and healthy.</li>
+        <li>Up to <b>2 pets per owner</b>.</li>
+        <li>Ask to see the vaccination card. If the last anti-rabies shot <b>has not expired</b>, vaccinating again is <b>not recommended</b>.</li>
+        <li>The veterinary team has the final say on every pet.</li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="config.js"></script>
+<script src="checkin.js"></script>
+</body>
+</html>
